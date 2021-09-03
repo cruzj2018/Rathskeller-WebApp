@@ -11,6 +11,9 @@
         {% if item.vegan %}
             {{ "Vegan" }}<br>
         {% endif %}
+        {% if item.vegetarian %}
+            {{ "Vegetarian" }}<br>
+        {% endif %}
         <input type = "submit" value = "Add to cart">
         </p><br>
     {% endfor %}
