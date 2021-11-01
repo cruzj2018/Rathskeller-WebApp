@@ -3,19 +3,102 @@
 {% block content %}
     <h1> {{ "Menu" }} </h1>
 
-    {% for item in menu %}
+    <form method="post">
+    {% csrf_token %}
+
+    <h2> {{ 'Make Your Own Pizza' }} </h2>
+    {% for pizza in pizza_custom %}
         <p>
-        {{ item.name }}<br>
-        {{ "$" }}{{ item.price }}<br>
-        {{ item.description }}<br>
-        {% if item.vegan %}
-            {{ "Vegan" }}<br>
-        {% endif %}
-        {% if item.vegetarian %}
-            {{ "Vegetarian" }}<br>
-        {% endif %}
-        <input type = "submit" value = "Add to cart">
-        </p><br>
+        {{ pizza.name }}<br>
+        {{ pizza.description }}<br>
+        ${{ pizza.price }}<br>
+        </p>
+        <label>
+            <input type="checkbox" name="items[]" value="{{ pizza.pk }}">
+        </label>
     {% endfor %}
+
+    <h2> {{ '8" Specialty Pizza' }} </h2>
+    {% for pizza in pizza_8 %}
+        <p>
+        {{ pizza.name }}<br>
+        {{ pizza.description }}<br>
+        ${{ pizza.price }}<br>
+        </p>
+        <label>
+            <input type="checkbox" name="items[]" value="{{ pizza.pk }}">
+        </label>
+    {% endfor %}
+
+    <h2> {{ '12" Specialty Pizza' }} </h2>
+    {% for pizza in pizza_12 %}
+        <p>
+        {{ pizza.name }}<br>
+        {{ pizza.description }}<br>
+        ${{ pizza.price }}<br>
+        </p>
+        <label>
+            <input type="checkbox" name="items[]" value="{{ pizza.pk }}">
+        </label>
+        <br>
+    {% endfor %}
+    <input type = "submit" value = "Add to cart">
+
+{#    <button class="btn btn-dark mt-5">Review Cart</button>#}
+    </form>
+
+{#    {% for item in menu %}#}
+{#        <p>#}
+{#        {{ item.name }}<br>#}
+{#        {{ item.description }}<br>#}
+{#        {{ "$" }}{{ item.price }}<br>#}
+{#        {% if item.vegan %}#}
+{#            {{ "Vegan" }}<br>#}
+{#        {% endif %}#}
+{#        {% if item.vegetarian %}#}
+{#            {{ "Vegetarian" }}<br>#}
+{#        {% endif %}#}
+{#        {% if item.organic %}#}
+{#            {{ "Organic" }}<br>#}
+{#        {% endif %}#}
+{#        {% if item.kosher %}#}
+{#            {{ "Kosher" }}<br>#}
+{#        {% endif %}#}
+{#        {% if item.halal %}#}
+{#            {{ "Halal" }}<br>#}
+{#        {% endif %}#}
+{#        {% if item.milk %}#}
+{#            {{ "Milk" }}<br>#}
+{#        {% endif %}#}
+{#        {% if item.egg %}#}
+{#            {{ "Egg" }}<br>#}
+{#        {% endif %}#}
+{#        {% if item.peanut %}#}
+{#            {{ "Peanut" }}<br>#}
+{#        {% endif %}#}
+{#        {% if item.treenut %}#}
+{#            {{ "Treenut" }}<br>#}
+{#        {% endif %}#}
+{#        {% if item.fish %}#}
+{#            {{ "Fish" }}<br>#}
+{#        {% endif %}#}
+{#        {% if item.shellfish %}#}
+{#            {{ "Shellfish" }}<br>#}
+{#        {% endif %}#}
+{#        {% if item.soy %}#}
+{#            {{ "Soy" }}<br>#}
+{#        {% endif %}#}
+{#        {% if item.wheat %}#}
+{#            {{ "Wheat" }}<br>#}
+{#        {% endif %}#}
+{#        {% if item.alcohol %}#}
+{#            {{ "Alcohol" }}<br>#}
+{#        {% endif %}#}
+{#        {% if item.glutenfree %}#}
+{#            {{ "Gluten Free" }}<br>#}
+{#        {% endif %}#}
+{#        <input type = "submit" value = "Add to cart">#}
+{#        </p><br>#}
+{#    {% endfor %}#}
 
 {% endblock %}
