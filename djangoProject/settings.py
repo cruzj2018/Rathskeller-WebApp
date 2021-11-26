@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rath.apps.RathConfig",
+    "order.apps.OrderConfig",
 ]
 
 MIDDLEWARE = [
