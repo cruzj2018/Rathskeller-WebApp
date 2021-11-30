@@ -42,6 +42,7 @@ class Item(models.Model):
     name = models.CharField(max_length=255, help_text="Food name")
     slug = models.SlugField(max_length=255, unique=True)
     price = models.IntegerField()
+    description = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -49,6 +50,6 @@ class Item(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Food"
-        verbose_name_plural = "Foods"
+        verbose_name = "Item"
+        verbose_name_plural = "Items"
         ordering = ("-created",)

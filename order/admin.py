@@ -6,7 +6,7 @@ class OrderItemInline(admin.TabularInline):
     extra = 0
 
 class OrderAdmin(admin.ModelAdmin):
-    inlines = (OrderItemInline, )
+    # inlines = (OrderItemInline, )
 
     search_fields = ("order_number", "created_date")
 

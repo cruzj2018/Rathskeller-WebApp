@@ -1,0 +1,39 @@
+<div class="
+				header_container
+				position-fixed
+				top-0
+				lef-0
+				py-2 py-md-3
+				bg-white
+				w-100
+				shadow-sm
+			">
+        <div class="page_container">
+            <div class="container-fluid position-relative">
+                <div class="
+							d-flex
+							justify-content-center justify-content-md-between
+							align-items-center
+						">
+                    <div class="logo_container">
+                        <!-- <img src="assets/images/logo.png" alt="logo" /> -->
+                        <h1 class="fw-bold mb-0">Rathskeller</h1>
+                    </div>
+                    <div class="d-none d-md-flex">
+                        <div>
+                            <a class="text-decoration-none h6 text-dark mb-0" href="{% url 'rath:index' %}">Menu</a>
+							</div>
+							<div class="ms-3">
+								<a class="text-decoration-none h6 text-dark mb-0" href="{% url 'order:order-list' %}">My Order</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- HUMBERGAR START -->
+					<div id="hambergerBtn" class="hamber_container d-block d-md-none position-absolute">
+						<i class="fas fa-bars"></i>
+					</div>
+					<!-- HUMBERGAR END -->
+				</div>
+			</div>
+		</div>
