@@ -31,4 +31,4 @@ class SectionAdmin(admin.ModelAdmin):
 
 
 
-admin.site.register(Section)
+admin.site.register(Section, SectionAdmin)

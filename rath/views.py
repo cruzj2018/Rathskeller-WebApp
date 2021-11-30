@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Item
+from .models import Item, Category
 
 
 # Create your views here.
@@ -8,8 +8,8 @@ def home(request):
 
 
 def index(request):
-    items = Item.objects.all()
-    return render(request, "rath/index.html", {"items": items})
+    categories = Category.objects.all()
+    return render(request, "rath/index.html", {"categories": categories})
 
 
 def menu_button(request):

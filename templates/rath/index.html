@@ -1,9 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% for item in items %}
-        <div>
-            <p>{{item.name}}</p>
+{% include "rath/partials/hero.html" %}
+<div class="container my-5">
+    <div class="d-flex justify-content-center align-items-center toggleHead">
+        <h1 class="mb-0 fw500 my-5">Product List</h1>
+    </div>
+    {% for category in categories %}
+
+    <h2 class="mb-0">{{category.name}} <i class="fas fa-long-arrow-alt-right h4 mb-1"></i></h2>
+
+    <div id="listData" class="row">
+        {% for item in category.categories.all %}
+        <div class="col-12 col-lg-6 mt-4">
+
+            <div data-bs-toggle="modal" data-bs-target="#exampleModal"
+                class="d-flex align-items-center listCardCont boxCont pointer">
+                <div>
+                    <img src="{% if item.item_image %}{{ item.item_image.url }}{% else %}https://images.unsplash.com/photo-1513104890138-7c749659a591?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80{% endif %}"
+                        alt="">
+                </div>
+                <div class="ms-4 py-2">
+                    <h6 class="mb-1 mb-0 h5">{{item.name}}</h6>
+                    <p class="small mb-0 text-secondary mt-1 px-2">
+                        {{item.description|capfirst|truncatewords:10}}
+                    </p>
+                    <div class="d-flex align-items-baseline mt-1">
+                        <h6 class="price h4 mb-0 fw-bold"><i class="bi bi-cart3"></i> ${{item.get_price}}</h6>
+                    </div>
+                </div>
+            </div>
         </div>
+        {% endfor %}
+    </div>
     {% endfor %}
+</div>
 {% endblock %}

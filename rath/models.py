@@ -43,8 +43,12 @@ class Item(models.Model):
     slug = models.SlugField(max_length=255, unique=True)
     price = models.IntegerField()
     description = models.TextField()
+    item_image = models.ImageField(upload_to="items/image", blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def get_price(self):
+        return "{:.2f}".format(self.price)
 
     def __str__(self):
         return self.name
