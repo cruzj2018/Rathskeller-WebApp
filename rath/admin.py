@@ -1,7 +1,12 @@
 from django.contrib import admin
-from .models import Category, Item, Section, ItemAttribute
+from .models import Category, Item, Section, ItemAttribute, DietType
 
-# Register your models here.
+class DietTypeAdmin(admin.ModelAdmin):
+    list_display = ("diet_name", "diet_description",)
+
+
+admin.site.register(DietType, DietTypeAdmin)
+
 class ItemAttributeInline(admin.TabularInline):
     model = ItemAttribute
     extra = 0
