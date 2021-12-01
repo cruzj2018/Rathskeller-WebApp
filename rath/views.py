@@ -4,11 +4,6 @@ from .models import Item, Category
 
 
 
-# Create your views here.
-def home(request):
-    return render(request, "rath/home.html")
-
-
 def index(request):
     categories = Category.objects.all()
     if not request.session.session_key:
