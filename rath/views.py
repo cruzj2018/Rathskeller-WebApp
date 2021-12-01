@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.contrib.sessions.models import Session
 from .models import Item, Category
+
 
 
 # Create your views here.
@@ -9,6 +11,13 @@ def home(request):
 
 def index(request):
     categories = Category.objects.all()
+    if not request.session.session_key:
+        request.session.create()
+
+    session = Session.objects.get(session_key=request.session.session_key)
+
+    print(session)
+
     return render(request, "rath/index.html", {"categories": categories})
 
 

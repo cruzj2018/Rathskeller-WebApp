@@ -10,6 +10,7 @@ whitenoise = "*"
 dj-database-url = "*"
 pillow = "*"
 psycopg2-binary = "*"
+django-htmx = "*"
 
 [dev-packages]
 black = "*"

@@ -4,4 +4,259 @@
 
 {% block content %}
 
+<!-- BODY START -->
+<div class="order_body_container">
+    <div class="page_container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-10 mx-auto">
+                    <form action="#" class="form">
+                        <h1 class="text-center">My Order</h1>
+                        <!-- Progress bar -->
+                        <div class="progressbar mt-5">
+                            <div class="progress" id="progress"></div>
+
+                            <div class="progress-step progress-step-active" data-title="Intro"></div>
+                            <div class="progress-step" data-title="Contact"></div>
+                            <div class="progress-step" data-title="ID"></div>
+                        </div>
+
+                        <!-- Steps -->
+                        <div class="form-step form-step-active">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12 mt-4">
+                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            class="d-flex align-items-center listCardCont boxCont pointer">
+                                            <div>
+                                                <!-- <img
+                                                src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80"
+                                                alt=""
+                                        /> -->
+                                            </div>
+                                            <div class="px-4 py-2 w-100">
+                                                <h6 class="mb-1 mb-0 h5">Barbecue Bacon Chicken</h6>
+                                                <p class="mb-0 text-secondary mt-1">
+                                                    condiments: Ranch
+                                                </p>
+                                                <div class="d-flex align-items-baseline justify-content-end mt-3">
+                                                    <h6 class="price h4 mb-0 fw-bold"><i class="bi bi-cart3"></i>
+                                                        $10.00</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            class="d-flex align-items-center listCardCont boxCont pointer">
+                                            <div>
+                                                <img src="https://i.pinimg.com/originals/98/99/7f/98997f906106d31fc75e33139b966b43.jpg"
+                                                    alt="" />
+                                            </div>
+                                            <div class="px-4 py-2 w-100">
+                                                <h6 class="mb-1 mb-0 h5">Bone less bites</h6>
+                                                <p class="mb-0 text-secondary mt-1">
+                                                    condiments: Ranch
+                                                </p>
+                                                <div class="d-flex align-items-baseline justify-content-end mt-1">
+                                                    <h6 class="price h4 mb-0 fw-bold"><i class="bi bi-cart3"></i>
+                                                        $3.10</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            class="d-flex align-items-center listCardCont boxCont pointer">
+                                            <div>
+                                                <img src='https://images.unsplash.com/photo-1596803244618-8dbee441d70b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1471&q=80'
+                                                    alt="" />
+                                            </div>
+                                            <div class="px-4 py-2 w-100">
+                                                <h6 class="mb-1 mb-0 h5">Coke</h6>
+                                                <p class="mb-0 text-secondary mt-1">
+                                                    condiments: Ranch
+                                                </p>
+                                                <div class="d-flex align-items-baseline justify-content-end mt-1">
+                                                    <h6 class="price h4 mb-0 fw-bold"><i class="bi bi-cart3"></i>
+                                                        $2.00</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                        <label class="fw-bold mb-0" for="phone">Delivery Date</label>
+                                        <input type="date" name="phone" id="phone" class="w-100" />
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <div class="d-flex align-items-center justify-content-end px-4">
+                                        <small class="h5 mb-0">Total:</small>
+                                        <h6 class="ms-2 fw-bold h4 mb-0">$14.00</h6>
+                                    </div>
+                                    <div class="row justify-content-center mt-3 mt-md-4 gy-4 gx-3 order_btn">
+                                        <div class="col-6 col-lg-4">
+                                            <a href="#" class="btn btn-next w-100 ml-auto text-danger">Cancel
+                                                Order</a>
+                                        </div>
+                                        <div class="col-6 col-lg-4">
+                                            <a href="#" class="btn btn-next w-100 ml-auto text-info">Add
+                                                Items</a>
+                                        </div>
+                                        <div class="col-6 col-lg-4">
+                                            <a href="#" class="btn btn-next w-100 ml-auto text-white">Checkout</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-step">
+                            <div class="mt-3">
+                                <label class="fw-bold mb-0" for="phone">Name</label>
+                                <input type="text" name="phone" id="phone" placeholder="Enter your Name" />
+                            </div>
+                            <div class="mt-3">
+                                <label class="fw-bold mb-0" for="email">Email</label>
+                                <input type="email" name="email" id="email" placeholder="Enter your Email" />
+                            </div>
+                            <div class="mt-3">
+                                <label class="fw-bold mb-0" for="email">Phone</label>
+                                <input type="text" name="email" id="email" placeholder="Enter your Phone" />
+                            </div>
+                            <div class="mt-3">
+                                <label class="fw-bold mb-0" for="email">Address</label>
+                                <input type="phone" name="email" id="email" placeholder="Enter your Address" />
+                            </div>
+                            <div class="btns-group d-flex justify-content-center mt-5">
+                                <a href="#" class="btn btn-prev btn2_">Previous</a>
+                                <a href="#" class="btn btn-next btn1_ text-white ms-3">Confirm</a>
+                            </div>
+                        </div>
+                        <div class="form-step">
+                            <div class="container-fluid">
+                                <div class="row position-relative">
+                                    <video id="video" autoPlay muted src="./assets/confirm.mp4"></video>
+                                    <h1 class="position-absolute text-center">Order Confirmed!</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    const prevBtns = document.querySelectorAll(".btn-prev");
+    const nextBtns = document.querySelectorAll(".btn-next");
+    const progress = document.getElementById("progress");
+    const formSteps = document.querySelectorAll(".form-step");
+    const progressSteps = document.querySelectorAll(".progress-step");
+
+    let formStepsNum = 0;
+
+    nextBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            formStepsNum++;
+            updateFormSteps();
+            updateProgressbar();
+        });
+    });
+
+    prevBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            formStepsNum--;
+            updateFormSteps();
+            updateProgressbar();
+        });
+    });
+
+    function updateFormSteps() {
+        formSteps.forEach((formStep) => {
+            formStep.classList.contains("form-step-active") &&
+                formStep.classList.remove("form-step-active");
+        });
+
+        formSteps[formStepsNum].classList.add("form-step-active");
+    }
+
+    function updateProgressbar() {
+        progressSteps.forEach((progressStep, idx) => {
+            if (idx < formStepsNum + 1) {
+                progressStep.classList.add("progress-step-active");
+            } else {
+                progressStep.classList.remove("progress-step-active");
+            }
+
+            if (idx === 2) {
+                setTimeout(() => {
+                    document.getElementById("video").pause()
+                }, 3000)
+            }
+        });
+
+        const progressActive = document.querySelectorAll(".progress-step-active");
+
+        progress.style.width =
+            ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
+    }
+
+
+
+    $(document).ready(function () {
+        $('.stepper').mdbStepper();
+    })
+
+    function someFunction21() {
+        setTimeout(function () {
+            $('#horizontal-stepper').nextStep();
+        }, 2000);
+    }
+
+    // SECOND PAGE (ORDER PAGE) START
+    $.each([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], function (key, value) {
+        $("#tbody").append(`<tr>
+                            <th scope="row">6465D44</th>
+                            <td>
+                                <h6 class="fw-bold mb-1">Native Burger</h6>
+                                <p class="mb-0">Order Type Delivery</p>
+                                <p class="mb-0"><i class="bi bi-map-fill me-1"></i> Lorem ipsum dolor sit amet
+                                    consectetur adipisicing
+                                    elit.</p>
+                                <p class="mb-0"><i class="bi bi-clock-fill me-1"></i> 15:56:26 12-6-2020</p>
+                            </td>
+                            <td>Delivered</td>
+                            <td>€55.00</td>
+                            <td>
+                                <button class="themeBtn px-2 w-100 mb-2 py-1 text-white rounded-3 border-0 ${key === 0 && "d-none"}">Order details</button>
+                <br />
+                <button
+                class="themeBtn2 bg-transparent px-2 w-100 rounded-3 ${key === 0 && "d-none"}">Support</button></td>
+        </tr>
+    `);
+    });
+    // SECOND PAGE (ORDER PAGE) END
+
+    // HAMBERGER START GLOBAL
+    const sidebar = document.getElementById("sideBarId");
+    document.getElementById("hambergerBtn").addEventListener("click", () => {
+        sidebar.style.display = "block";
+        sidebar.style.opacity = "1";
+        sidebar.style.top = "0%";
+        sidebar.style.left = "0%";
+        sidebar.style.transform = "none";
+    });
+
+    const closeSidebar = () => {
+        sidebar.style.display = "none";
+        sidebar.style.opacity = "0";
+        sidebar.style.transition = "1s all";
+    };
+    // HAMBERGER END GLOBAL
+</script>
 {% endblock %}

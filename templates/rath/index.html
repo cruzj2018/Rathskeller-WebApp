@@ -12,9 +12,191 @@
 
     <div id="listData" class="row">
         {% for item in category.categories.all %}
+        <div class="modal fade" id="item-{{item.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Barbecue Bacon Chicken</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body mb-0">
+                        <div class="notify">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        </div>
+                        <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, quibusdam
+                        </p>
+                        <p class="fw-bold mb-0">Price: $8.79</p>
+                    </div>
+                    <form action="{% url 'order:add' %}" method="post" hx-post="{% url 'order:add' %}"
+                        hx-target="#notify">
+                        {% csrf_token %}
+                        <div>
+                            <h6 class="bg-light py-2 fw-bold px-4">8<sup>th</sup> PIZZA TOPPING</h6>
+
+                            <div
+                                class="px-4 d-flex justify-content-between align-items-center py-2 border-bottom border-1">
+                                <div class="d-flex align-items-center"> <label class="checkbox-label">
+                                        <input type="checkbox">
+                                        <span class="checkbox-custom rectangular"></span>
+                                    </label>
+
+                                    <p class="mb-0 fw600 ps-1 pe-3">
+                                        Black olives
+                                    </p>
+                                    <span><small
+                                            class="f10 bg-gray_ px-2 fw-bold py-1 rounded-pill">+$1.05</small></span>
+                                </div>
+                                <p class="mb-0 rounded-circle green_bg px-1 text-white">V</p>
+                            </div>
+                            <div
+                                class="px-4 d-flex justify-content-between align-items-center py-2 border-bottom border-1">
+                                <div class="d-flex align-items-center"> <label class="checkbox-label">
+                                        <input type="checkbox">
+                                        <span class="checkbox-custom rectangular"></span>
+                                    </label>
+
+                                    <p class="mb-0 fw600 ps-1 pe-3">
+                                        Black olives
+                                    </p>
+                                    <span><small
+                                            class="f10 bg-gray_ px-2 fw-bold py-1 rounded-pill">+$1.05</small></span>
+                                </div>
+                                <p class="mb-0 rounded-circle green_bg px-1 text-white">V</p>
+                            </div>
+                            <div
+                                class="px-4 d-flex justify-content-between align-items-center py-2 border-bottom border-1">
+                                <div class="d-flex align-items-center"> <label class="checkbox-label">
+                                        <input type="checkbox">
+                                        <span class="checkbox-custom rectangular"></span>
+                                    </label>
+
+                                    <p class="mb-0 fw600 ps-1 pe-3">
+                                        Black olives
+                                    </p>
+                                    <span><small
+                                            class="f10 bg-gray_ px-2 fw-bold py-1 rounded-pill">+$1.05</small></span>
+                                </div>
+                                <p class="mb-0 rounded-circle green_bg px-1 text-white">V</p>
+                            </div>
+                            <div
+                                class="px-4 d-flex justify-content-between align-items-center py-2 border-bottom border-1">
+                                <div class="d-flex align-items-center"> <label class="checkbox-label">
+                                        <input type="checkbox">
+                                        <span class="checkbox-custom rectangular"></span>
+                                    </label>
+
+                                    <p class="mb-0 fw600 ps-1 pe-3">
+                                        Black olives
+                                    </p>
+                                    <span><small
+                                            class="f10 bg-gray_ px-2 fw-bold py-1 rounded-pill">+$1.05</small></span>
+                                </div>
+                                <p class="mb-0 rounded-circle blue_bg px-1 text-dark">M</p>
+                            </div>
+                            <div
+                                class="px-4 d-flex justify-content-between align-items-center py-2 border-bottom border-1">
+                                <div class="d-flex align-items-center"> <label class="checkbox-label">
+                                        <input type="checkbox">
+                                        <span class="checkbox-custom rectangular"></span>
+                                    </label>
+
+                                    <p class="mb-0 fw600 ps-1 pe-3">
+                                        Black olives
+                                    </p>
+                                    <span><small
+                                            class="f10 bg-gray_ px-2 fw-bold py-1 rounded-pill">+$1.05</small></span>
+                                </div>
+                                <p class="mb-0 rounded-circle green_bg px-1 text-white">V</p>
+                            </div>
+                            <div
+                                class="px-4 d-flex justify-content-between align-items-center py-2 border-bottom border-1">
+                                <div class="d-flex align-items-center"> <label class="checkbox-label">
+                                        <input type="checkbox">
+                                        <span class="checkbox-custom rectangular"></span>
+                                    </label>
+
+                                    <p class="mb-0 fw600 ps-1 pe-3">
+                                        Black olives
+                                    </p>
+                                    <span><small
+                                            class="f10 bg-gray_ px-2 fw-bold py-1 rounded-pill">+$1.05</small></span>
+                                </div>
+                                <p class="mb-0 rounded-circle green_bg px-1 text-white">V</p>
+                            </div>
+                            <div
+                                class="px-4 d-flex justify-content-between align-items-center py-2 border-bottom border-1">
+                                <div class="d-flex align-items-center"> <label class="checkbox-label">
+                                        <input type="checkbox">
+                                        <span class="checkbox-custom rectangular"></span>
+                                    </label>
+
+                                    <p class="mb-0 fw600 ps-1 pe-3">
+                                        Black olives
+                                    </p>
+                                    <span><small
+                                            class="f10 bg-gray_ px-2 fw-bold py-1 rounded-pill">+$1.05</small></span>
+                                </div>
+                                <p class="mb-0 rounded-circle green_bg px-1 text-white">V</p>
+                            </div>
+                            <div
+                                class="px-4 d-flex justify-content-between align-items-center py-2 border-bottom border-1">
+                                <div class="d-flex align-items-center"> <label class="checkbox-label">
+                                        <input type="checkbox">
+                                        <span class="checkbox-custom rectangular"></span>
+                                    </label>
+
+                                    <p class="mb-0 fw600 ps-1 pe-3">
+                                        Black olives
+                                    </p>
+                                    <span><small
+                                            class="f10 bg-gray_ px-2 fw-bold py-1 rounded-pill">+$1.05</small></span>
+                                </div>
+                                <p class="mb-0 rounded-circle green_bg px-1 text-white">V</p>
+                            </div>
+                            <div
+                                class="px-4 d-flex justify-content-between align-items-center py-2 border-bottom border-1">
+                                <div class="d-flex align-items-center"> <label class="checkbox-label">
+                                        <input type="checkbox">
+                                        <span class="checkbox-custom rectangular"></span>
+                                    </label>
+
+                                    <p class="mb-0 fw600 ps-1 pe-3">
+                                        Black olives
+                                    </p>
+                                    <span><small
+                                            class="f10 bg-gray_ px-2 fw-bold py-1 rounded-pill">+$1.05</small></span>
+                                </div>
+                                <p class="mb-0 rounded-circle blue_bg px-1 text-dark">M</p>
+                            </div>
+
+                            <!-- AMOUNT START -->
+                            <div class="my-4">
+                                <h4 class="text-center">Total: $8.79</h4>
+                                <div class="d-flex justify-content-center align-items-center topping_btns mt-3">
+                                    <button type="button"
+                                        class="btn1 d-flex align-items-center justify-content-between w-100">
+                                        <p class="mb-0 w-100 h2 minus">-</p><input type="text" name="total" value="1"
+                                            class="bg-transparent text-center border-0 h5 mb-0">
+                                        <p class="h2 w-100 mb-0 add">+</p>
+                                        </buton>
+                                        <button class="btn2 ms-3" type="submit">Add to My Order</button>
+                                </div>
+                            </div>
+                            <!-- AMOUNT END -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="col-12 col-lg-6 mt-4">
 
-            <div data-bs-toggle="modal" data-bs-target="#exampleModal"
+            <div data-bs-toggle="modal" data-bs-target="#item-{{item.id}}"
                 class="d-flex align-items-center listCardCont boxCont pointer">
                 <div>
                     <img src="{% if item.item_image %}{{ item.item_image.url }}{% else %}https://images.unsplash.com/photo-1513104890138-7c749659a591?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80{% endif %}"
@@ -35,4 +217,31 @@
     </div>
     {% endfor %}
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const addBtn = document.querySelectorAll(".add");
+    const minusBtn = document.querySelectorAll(".minus");
+
+    addBtn.forEach(btn => {
+        const limit = 10
+        btn.addEventListener("click", function (e) {
+            const inputElement = e.target.previousElementSibling;
+            if (inputElement.value < limit)
+                inputElement.value++
+        })
+    })
+
+    minusBtn.forEach(btn => {
+        btn.addEventListener("click", function (e) {
+            const inputElement = e.target.nextElementSibling;
+            if (inputElement.value <= 0) {
+                console.log("negative values")
+            } else {
+                inputElement.value--
+            }
+        })
+    })
+</script>
 {% endblock %}

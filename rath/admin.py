@@ -1,7 +1,11 @@
 from django.contrib import admin
-from .models import Category, Item, Section
+from .models import Category, Item, Section, ItemAttribute
 
 # Register your models here.
+class ItemAttributeInline(admin.TabularInline):
+    model = ItemAttribute
+    extra = 0
+
 class ItemAdmin(admin.ModelAdmin):
     list_display = (
         "category",
@@ -10,6 +14,7 @@ class ItemAdmin(admin.ModelAdmin):
     )
     list_select_related = ("category",)
     prepopulated_fields = {"slug": ("name",)}
+    inlines = (ItemAttributeInline, )
 
 
 

@@ -57,3 +57,13 @@ class Item(models.Model):
         verbose_name = "Item"
         verbose_name_plural = "Items"
         ordering = ("-created",)
+
+class ItemAttribute(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="item_attributes")
+    name = models.CharField(max_length=100)
+    extra_cost = models.IntegerField()
+    selected = models.BooleanField(default=True)
+
+
+    def __str__(self):
+        return self.name
