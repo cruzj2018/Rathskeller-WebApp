@@ -15,7 +15,7 @@ def add_item(request):
     if request.method == "POST":
         if request.htmx:
             total = request.POST.get("total")
-            print(total)
+            
             try:
                 session = Session.objects.get(session_key=request.session.session_key)
             except Exception:   

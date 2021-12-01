@@ -73,8 +73,9 @@ class ItemAttribute(models.Model):
         Item, on_delete=models.CASCADE, related_name="item_attributes"
     )
     name = models.CharField(max_length=100)
+    diet = models.ForeignKey(DietType, blank=True, null=True, on_delete=models.CASCADE)
     extra_cost = models.IntegerField()
-    selected = models.BooleanField(default=True)
+    selected = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

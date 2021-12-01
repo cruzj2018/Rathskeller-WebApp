@@ -10,6 +10,7 @@ admin.site.register(DietType, DietTypeAdmin)
 class ItemAttributeInline(admin.TabularInline):
     model = ItemAttribute
     extra = 0
+    readonly_fields = ("selected", )
 
 class ItemAdmin(admin.ModelAdmin):
     list_display = (
