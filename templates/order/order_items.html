@@ -27,6 +27,7 @@
                                 <div class="row">
                                     {% for item in cart %}
                                     {% with product=item.product %}
+                                    {{item.extra}}
                                     <div class="col-12 mt-4">
                                         <div data-bs-toggle="modal" data-bs-target="#exampleModal"
                                             class="d-flex align-items-center listCardCont boxCont pointer">

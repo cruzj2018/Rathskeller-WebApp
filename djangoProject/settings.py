@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "django_htmx",
     "rath.apps.RathConfig",
     "order.apps.OrderConfig",
+    "cloudinary_storage",
+    "cloudinary",
 ]
 
 MIDDLEWARE = [
@@ -52,7 +54,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    
 ]
 
 ROOT_URLCONF = "djangoProject.urls"
@@ -132,6 +133,20 @@ STATICFILES_DIRS = [
 ]
 # LOGIN_REDIRECT_URL = "/user-profile/"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+on_heroku = False
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": "dfxuofrno",
+    "API_KEY": "621859865884654",
+    "API_SECRET": "lVSjvQew_AZLBcIl6CtW77lKt8E",
+}
+
+
+if 'CLOUDINARY_URL' in os.environ:
+    on_heroku = True
+
+if on_heroku:
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

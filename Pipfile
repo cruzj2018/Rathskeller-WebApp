@@ -11,6 +11,8 @@ dj-database-url = "*"
 pillow = "*"
 psycopg2-binary = "*"
 django-htmx = "*"
+cloudinary = "*"
+django-cloudinary-storage = "*"
 
 [dev-packages]
 black = "*"

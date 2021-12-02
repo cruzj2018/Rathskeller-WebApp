@@ -22,8 +22,8 @@ def add_item(request):
             selected = request.POST.getlist("selected")
             item = Item.objects.get(id=item_id)
             if selected:
-                attrs = item.item_attributes.filter(id__in=selected)
-                cart.add(product=item, quantity=int(quantity))
+                extra = item.item_attributes.filter(id__in=selected).values()
+                cart.add(product=item, quantity=int(quantity), extra=extra)
                 return render(request, "rath/partials/success.html", {"item": item})
             else:
                 cart = cart.add(product=item, quantity=int(quantity))
