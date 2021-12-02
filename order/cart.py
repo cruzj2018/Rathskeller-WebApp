@@ -1,7 +1,8 @@
 from decimal import Decimal
+import copy
 from django.conf import settings
-from rath.models import Item as Product
-
+from rath.models import Item
+from django.forms import model_to_dict
 
 
 class Cart(object):
@@ -25,9 +26,10 @@ class Cart(object):
         """
         product_ids = self.cart.keys()
         # get the product objects and add them to the cart
-        products = Product.objects.filter(id__in=product_ids)
+        products = Item.objects.filter(id__in=product_ids)
 
-        cart = self.cart.copy()
+        # cart = self.cart.copy()
+        cart = copy.deepcopy(self.cart)
         for product in products:
             cart[str(product.id)]['product'] = product
 
@@ -36,13 +38,7 @@ class Cart(object):
             item['total_price'] = item['price'] * item['quantity']
             yield item
 
-    def __len__(self):
-        """
-        Count all items in the cart.
-        """
-        return sum(item['quantity'] for item in self.cart.values())
-
-    def add(self, product, quantity=1, override_quantity=False):
+    def add(self, product, quantity=1, override_quantity=False, extra=None):
         """
         Add a product to the cart or update its quantity.
         """
@@ -55,10 +51,11 @@ class Cart(object):
         else:
             self.cart[product_id]['quantity'] += quantity
         self.save()
-
+    
     def save(self):
         # mark the session as "modified" to make sure it gets saved
         self.session.modified = True
+
 
     def remove(self, product):
         """

@@ -25,65 +25,31 @@
                         <div class="form-step form-step-active">
                             <div class="container-fluid">
                                 <div class="row">
+                                    {% for item in cart %}
+                                    {% with product=item.product %}
                                     <div class="col-12 mt-4">
                                         <div data-bs-toggle="modal" data-bs-target="#exampleModal"
                                             class="d-flex align-items-center listCardCont boxCont pointer">
                                             <div>
-                                                <!-- <img
-                                                src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80"
-                                                alt=""
-                                        /> -->
+                                                <img src="{% if product.item_image %}{{product.item_image.url}}{% else %}https://images.unsplash.com/photo-1513104890138-7c749659a591?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80{% endif %}"
+                                                    alt="{{product.name}}" />
                                             </div>
                                             <div class="px-4 py-2 w-100">
-                                                <h6 class="mb-1 mb-0 h5">Barbecue Bacon Chicken</h6>
+                                                <h6 class="mb-1 mb-0 h5">{{product.name}}</h6>
                                                 <p class="mb-0 text-secondary mt-1">
-                                                    condiments: Ranch
+                                                    {{product.description|truncatewords:10}}
                                                 </p>
+                                                
+                                                <span class="text-muted badge">{{product.price}} x {{item.quantity}}</span>
                                                 <div class="d-flex align-items-baseline justify-content-end mt-3">
                                                     <h6 class="price h4 mb-0 fw-bold"><i class="bi bi-cart3"></i>
-                                                        $10.00</h6>
+                                                        ${{item.total_price}}</h6>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 mt-4">
-                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                            class="d-flex align-items-center listCardCont boxCont pointer">
-                                            <div>
-                                                <img src="https://i.pinimg.com/originals/98/99/7f/98997f906106d31fc75e33139b966b43.jpg"
-                                                    alt="" />
-                                            </div>
-                                            <div class="px-4 py-2 w-100">
-                                                <h6 class="mb-1 mb-0 h5">Bone less bites</h6>
-                                                <p class="mb-0 text-secondary mt-1">
-                                                    condiments: Ranch
-                                                </p>
-                                                <div class="d-flex align-items-baseline justify-content-end mt-1">
-                                                    <h6 class="price h4 mb-0 fw-bold"><i class="bi bi-cart3"></i>
-                                                        $3.10</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mt-4">
-                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                            class="d-flex align-items-center listCardCont boxCont pointer">
-                                            <div>
-                                                <img src='https://images.unsplash.com/photo-1596803244618-8dbee441d70b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1471&q=80'
-                                                    alt="" />
-                                            </div>
-                                            <div class="px-4 py-2 w-100">
-                                                <h6 class="mb-1 mb-0 h5">Coke</h6>
-                                                <p class="mb-0 text-secondary mt-1">
-                                                    condiments: Ranch
-                                                </p>
-                                                <div class="d-flex align-items-baseline justify-content-end mt-1">
-                                                    <h6 class="price h4 mb-0 fw-bold"><i class="bi bi-cart3"></i>
-                                                        $2.00</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% endwith %}
+                                    {% endfor %}
                                     <div class="col-12 mt-3">
                                         <label class="fw-bold mb-0" for="phone">Delivery Date</label>
                                         <input type="date" name="phone" id="phone" class="w-100" />
@@ -92,11 +58,11 @@
                                 <div class="col-12 mt-4">
                                     <div class="d-flex align-items-center justify-content-end px-4">
                                         <small class="h5 mb-0">Total:</small>
-                                        <h6 class="ms-2 fw-bold h4 mb-0">$14.00</h6>
+                                        <h6 class="ms-2 fw-bold h4 mb-0">${{ cart.get_total_price|floatformat:2 }}</h6>
                                     </div>
                                     <div class="row justify-content-center mt-3 mt-md-4 gy-4 gx-3 order_btn">
                                         <div class="col-6 col-lg-4">
-                                            <a href="#" class="btn btn-next w-100 ml-auto text-danger">Cancel
+                                            <a href="{% url 'order:clear-cart' %}" class="btn btn-next w-100 ml-auto text-danger">Cancel
                                                 Order</a>
                                         </div>
                                         <div class="col-6 col-lg-4">
