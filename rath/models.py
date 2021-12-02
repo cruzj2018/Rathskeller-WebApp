@@ -38,10 +38,14 @@ class Category(models.Model):
 class DietType(models.Model):
     diet_name = models.CharField(max_length=255)
     diet_description = models.TextField()
+    display_name_css_bg = models.CharField(max_length=20, default="green_bg")
 
     def __str__(self):
         return self.diet_name
 
+    @property
+    def get_display_title(self):
+        return self.diet_name[0].upper
 
 class Item(models.Model):
     category = models.ForeignKey(
@@ -50,7 +54,7 @@ class Item(models.Model):
     name = models.CharField(max_length=255, help_text="Food name")
     slug = models.SlugField(max_length=255, unique=True)
     diet = models.ForeignKey(DietType, on_delete=models.CASCADE, blank=True, null=True)
-    price = models.IntegerField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
     item_image = models.ImageField(upload_to="items/image", blank=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -74,7 +78,7 @@ class ItemAttribute(models.Model):
     )
     name = models.CharField(max_length=100)
     diet = models.ForeignKey(DietType, blank=True, null=True, on_delete=models.CASCADE)
-    extra_cost = models.IntegerField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     selected = models.BooleanField(default=False)
 
     def __str__(self):

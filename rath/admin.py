@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Category, Item, Section, ItemAttribute, DietType
 
 class DietTypeAdmin(admin.ModelAdmin):
-    list_display = ("diet_name", "diet_description",)
+    list_display = ("diet_name", "diet_description","get_display_title")
 
 
 admin.site.register(DietType, DietTypeAdmin)

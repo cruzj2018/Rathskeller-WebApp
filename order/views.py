@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.sessions.models import Session
 from django.http import JsonResponse
+from rath.models import Item
 from .models import OrderItem
+from .cart import Cart
 
 # Create your views here.
 
@@ -13,14 +15,25 @@ def order_list(request):
 
 def add_item(request):
     if request.method == "POST":
+        # request.session['cart'] = ""
+        cart = Cart(request)
         if request.htmx:
-            total = request.POST.get("total")
+            item_id = request.POST.get("item-id")
+            quantity = request.POST.get("total")
+            selected = request.POST.getlist('selected')
+
+            cart = Cart(request)
+            item = get_object_or_404(Item , id=item_id)
             
-            try:
-                session = Session.objects.get(session_key=request.session.session_key)
-            except Exception:   
-                request.session.create()
-        return JsonResponse({"ok": "Item Added"})
+            cart.add(product=item, quantity=int(quantity))
+
+            # cart.clear()
+
+            for c in cart:
+                print(c)
+                        
+            # data = {"item_id": item_id}
+        # return JsonResponse({"data": data}, status=200)
+            return render(request, "rath/partials/success.html", {"item": item})
     else:
-        print("get request")
-        return render(request, "rath/partials/success.html")
+        return JsonResponse({"data": "Error"}, status=403)

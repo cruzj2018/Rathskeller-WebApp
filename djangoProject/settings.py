@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-j=5sp27u9xn_7_ju%c2g3v#v$xywgakph%grzs6yyg!9($_=-+
 DEBUG = True
 
 ALLOWED_HOSTS = ["secret-stream-95054.herokuapp.com", "localhost", "127.0.0.1"]
-
+CART_SESSION_ID = "cart"
 
 # Application definition
 
