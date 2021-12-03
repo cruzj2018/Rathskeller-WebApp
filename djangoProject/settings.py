@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     "rath.apps.RathConfig",
     "order.apps.OrderConfig",
     "cloudinary_storage",
+    # "phonenumber_field",
     "cloudinary",
+    
 ]
 
 MIDDLEWARE = [

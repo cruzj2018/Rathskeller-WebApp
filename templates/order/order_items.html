@@ -1,25 +1,25 @@
 {% extends "base.html" %}
+{% load convert_json %}
 {% block title %}{% endblock %}
 
 
 {% block content %}
-
 <!-- BODY START -->
 <div class="order_body_container">
     <div class="page_container">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-md-10 mx-auto">
-                    <form action="#" class="form">
+                    <form action="#" class="form" method="post" id="detail-form">
                         <h1 class="text-center">My Order</h1>
                         <!-- Progress bar -->
                         <div class="progressbar mt-5">
                             <div class="progress" id="progress"></div>
-
                             <div class="progress-step progress-step-active" data-title="Intro"></div>
                             <div class="progress-step" data-title="Contact"></div>
                             <div class="progress-step" data-title="ID"></div>
                         </div>
+                        <div id="message"></div>
 
                         <!-- Steps -->
                         <div class="form-step form-step-active">
@@ -27,24 +27,52 @@
                                 <div class="row">
                                     {% for item in cart %}
                                     {% with product=item.product %}
-                                    {{item.extra}}
-                                    <div class="col-12 mt-4">
-                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    {% if item.extra %}
+
+                                    <div class="modal fade" id="item-{{item.id}}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">{{product.category}}
+                                                        - {{product.name}}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body mb-0">
+                                                    <div id="notify-{{item.id}}">Extra</div>
+                                                    {% for extra in item.extra|convert_object %}
+                                                    <p class="my-2">
+                                                        <span>Name: {{extra.name}}</span> <span class="badge">Price:
+                                                            {{extra.price}}</span>
+                                                    </p>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    <div class="col-12 mt-4 content">
+                                        <div data-bs-toggle="modal"
+                                            data-bs-target="{% if product.item_attributes.all %} #item-{{item.id}} {% endif %}"
                                             class="d-flex align-items-center listCardCont boxCont pointer">
                                             <div>
                                                 <img src="{% if product.item_image %}{{product.item_image.url}}{% else %}https://images.unsplash.com/photo-1513104890138-7c749659a591?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80{% endif %}"
                                                     alt="{{product.name}}" />
                                             </div>
                                             <div class="px-4 py-2 w-100">
-                                                <h6 class="mb-1 mb-0 h5">{{product.name}}</h6>
-                                                <p class="mb-0 text-secondary mt-1">
+                                                <h6 class="mb-1 mb-0 h5 name">{{product.name}}</h6>
+                                                <p class="mb-0 text-secondary mt-1 description">
                                                     {{product.description|truncatewords:10}}
                                                 </p>
-                                                
-                                                <span class="text-muted badge">{{product.price}} x {{item.quantity}}</span>
+
+                                                <span class="text-muted badge">$<span
+                                                        class="price">{{product.price}}</span> x
+                                                    <span class="quantity">{{item.quantity}}</span></span>
                                                 <div class="d-flex align-items-baseline justify-content-end mt-3">
                                                     <h6 class="price h4 mb-0 fw-bold"><i class="bi bi-cart3"></i>
-                                                        ${{item.total_price}}</h6>
+                                                        <span class="total">${{item.total_price}}</span></h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -53,22 +81,23 @@
                                     {% endfor %}
                                     <div class="col-12 mt-3">
                                         <label class="fw-bold mb-0" for="phone">Delivery Date</label>
-                                        <input type="date" name="phone" id="phone" class="w-100" />
+                                        <input type="date" name="delivery-date" id="date" class="w-100 delivery-date" />
                                     </div>
                                 </div>
                                 <div class="col-12 mt-4">
                                     <div class="d-flex align-items-center justify-content-end px-4">
                                         <small class="h5 mb-0">Total:</small>
-                                        <h6 class="ms-2 fw-bold h4 mb-0">${{ cart.get_total_price|floatformat:2 }}</h6>
+                                        <h6 class="ms-2 fw-bold h4 mb-0 grand-total">
+                                            ${{ cart.get_total_price|floatformat:2 }}</h6>
                                     </div>
                                     <div class="row justify-content-center mt-3 mt-md-4 gy-4 gx-3 order_btn">
                                         <div class="col-6 col-lg-4">
-                                            <a href="{% url 'order:clear-cart' %}" class="btn btn-next w-100 ml-auto text-danger">Cancel
+                                            <a href="{% url 'order:clear-cart' %}"
+                                                class="btn btn-next w-100 ml-auto text-danger">Cancel
                                                 Order</a>
                                         </div>
                                         <div class="col-6 col-lg-4">
-                                            <a href="#" class="btn btn-next w-100 ml-auto text-info">Add
-                                                Items</a>
+                                            <a href="#" class="btn btn-next w-100 ml-auto text-info">User Detail</a>
                                         </div>
                                         <div class="col-6 col-lg-4">
                                             <a href="#" class="btn btn-next w-100 ml-auto text-white">Checkout</a>
@@ -79,26 +108,30 @@
                             </div>
                         </div>
                         <div class="form-step">
+                            <div id="notify"></div>
+                            {% csrf_token %}
                             <div class="mt-3">
-                                <label class="fw-bold mb-0" for="phone">Name</label>
-                                <input type="text" name="phone" id="phone" placeholder="Enter your Name" />
+                                <label class="fw-bold mb-0" for="name">Name</label>
+                                <input type="text" name="name" id="name" placeholder="Enter your Name" required />
                             </div>
                             <div class="mt-3">
                                 <label class="fw-bold mb-0" for="email">Email</label>
-                                <input type="email" name="email" id="email" placeholder="Enter your Email" />
+                                <input type="email" name="email" id="email" placeholder="Enter your Email" required />
                             </div>
                             <div class="mt-3">
-                                <label class="fw-bold mb-0" for="email">Phone</label>
-                                <input type="text" name="email" id="email" placeholder="Enter your Phone" />
+                                <label class="fw-bold mb-0" for="phone">Phone</label>
+                                <input type="tel" name="phone" id="phone" placeholder="Enter your Phone" required />
                             </div>
                             <div class="mt-3">
-                                <label class="fw-bold mb-0" for="email">Address</label>
-                                <input type="phone" name="email" id="email" placeholder="Enter your Address" />
+                                <label class="fw-bold mb-0" for="address">Address</label>
+                                <input type="text" name="address" id="address" placeholder="Enter your Address"
+                                    required />
                             </div>
                             <div class="btns-group d-flex justify-content-center mt-5">
                                 <a href="#" class="btn btn-prev btn2_">Previous</a>
-                                <a href="#" class="btn btn-next btn1_ text-white ms-3">Confirm</a>
+                                <button type="submit" class="btn btn1_ text-white ms-3">Confirm</button>
                             </div>
+
                         </div>
                         <div class="form-step">
                             <div class="container-fluid">
@@ -124,7 +157,8 @@
     const progress = document.getElementById("progress");
     const formSteps = document.querySelectorAll(".form-step");
     const progressSteps = document.querySelectorAll(".progress-step");
-
+    const detailForm = document.getElementById("detail-form");
+    const contentContainer = document.querySelectorAll(".content");
     let formStepsNum = 0;
 
     nextBtns.forEach((btn) => {
@@ -173,11 +207,9 @@
             ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
     }
 
-
-
-    $(document).ready(function () {
-        $('.stepper').mdbStepper();
-    })
+    // $(document).ready(function () {
+    //     $('.stepper').mdbStepper();
+    // })
 
     function someFunction21() {
         setTimeout(function () {
@@ -225,5 +257,36 @@
         sidebar.style.transition = "1s all";
     };
     // HAMBERGER END GLOBAL
+
+    //ADDRESS SUBMIT AND DATA WRANGLING
+    detailForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const deliveryDate = document.getElementById("date");
+        const messageBox = document.getElementById("message");
+
+        if (deliveryDate.value === "") {
+            console.log("empty")
+            message.innerHTML = `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>Info Empty delivery date!</strong> Delivery date should not be empty.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>`
+        } else {
+            if (contentContainer !== null) {
+                contentContainer.forEach(item => {
+                    console.log(item)
+                })
+            }
+        }
+        // fetch("{% url 'order:create' %}", {
+        //     method: "post", 
+        //     body: {}
+        // }).then(res=>{
+        //     return res.json()
+        // }).then(data=>{
+        //     console.log(data)
+        // }).error(err=>{
+        //     console.log(err)
+        // })
+    });
 </script>
 {% endblock %}

@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-from django.contrib.sessions.models import Session
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from django.http import JsonResponse
 from rath.models import Item, ItemAttribute
 from .models import OrderItem
@@ -35,4 +35,19 @@ def add_item(request):
 def clear_cart(request):
     cart = Cart(request)
     cart.clear()
-    return render(request, "rath/partials/success.html")
+    messages.add_message(request, messages.INFO, "Order cleared!")
+    # messages.add_message(request, messages.INFO, 'Hello world.')
+    return redirect("order:order-list")
+
+
+def order_create(request):
+    if request.method == "POST":
+
+        if request.htmx:
+            name = request.POST.get("name")
+            phone = request.POST.get("phone")
+            email = request.POST.get("email")
+            address = request.POST.get("address")
+
+
+    return JsonResponse({"created": "created"}, status=203)

@@ -20,12 +20,26 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css" />
     <!-- EXTERNAL LINS END -->
     <title>{% block title %}SiteName{% endblock %}</title>
+    <style>
+        .mt-large{
+            margin-top: 80px;
+        }
+    </style>
 </head>
 
 <body bgcolor=white>
     {% block navigation %}
     {% include "rath/partials/navigation.html" %}
     {% endblock %}
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="mt-large alert {{ message.tags }} alert-dismissible fade show rounded-0" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
 
     {% block content %}
     {% endblock %}

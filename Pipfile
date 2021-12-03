@@ -13,6 +13,7 @@ psycopg2-binary = "*"
 django-htmx = "*"
 cloudinary = "*"
 django-cloudinary-storage = "*"
+django-phonenumber-field = "*"
 
 [dev-packages]
 black = "*"
