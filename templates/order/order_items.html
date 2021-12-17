@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load convert_json %}
 {% block title %}{% endblock %}
+{% comment %}
+https://images.unsplash.com/photo-1513104890138-7c749659a591?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80
+https://images.unsplash.com/photo-1513104890138-7c749659a591?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80
+{% endcomment %}
 
 
 {% block content %}
@@ -58,9 +62,11 @@
                                             data-bs-target="{% if product.item_attributes.all %} #item-{{item.id}} {% endif %}"
                                             class="d-flex align-items-center listCardCont boxCont pointer">
                                             <div>
-                                                <img src="{% if product.item_image %}{{product.item_image.url}}{% else %}https://images.unsplash.com/photo-1513104890138-7c749659a591?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80{% endif %}"
-                                                    alt="{{product.name}}" />
+                                                {% if product.item_image %}
+                                                <img src="{{product.item_image.url}}" alt="{{product.name}}" />
+                                                {% endif %}
                                             </div>
+
                                             <div class="px-4 py-2 w-100">
                                                 <h6 class="mb-1 mb-0 h5 name">{{product.name}}</h6>
                                                 <p class="mb-0 text-secondary mt-1 description">

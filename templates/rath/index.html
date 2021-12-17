@@ -41,7 +41,8 @@
                                     <label class="form-check-label">
                                         <!-- <span class="checkbox-custom rectangular"></span> -->
                                         <input class="form-check-input select-extra" data-extra="{{extra.price}}"
-                                            type="checkbox" name="selected" data-extra-id="{{extra.id}}" value="{{extra.id}}">
+                                            type="checkbox" name="selected" data-extra-id="{{extra.id}}"
+                                            value="{{extra.id}}">
                                     </label>
 
                                     <p class="mb-0 fw600 ps-1 pe-3">
@@ -84,8 +85,9 @@
             <div data-bs-toggle="modal" data-bs-target="#item-{{item.id}}"
                 class="d-flex align-items-center listCardCont boxCont pointer">
                 <div>
-                    <img src="{% if item.item_image %}{{ item.item_image.url }}{% else %}https://images.unsplash.com/photo-1513104890138-7c749659a591?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80{% endif %}"
-                        alt="">
+                    {% if item.item_image %}
+                    <img src="{{ item.item_image.url }}" alt="">
+                    {% endif %}
                 </div>
                 <div class="ms-4 py-2">
                     <h6 class="mb-1 mb-0 h5">{{item.name}}</h6>
@@ -144,11 +146,11 @@
             }
         })
     })
-    extraCheck.forEach(check=>{
-        check.addEventListener("change", function(e){
-            if(e.target.checked == true){
+    extraCheck.forEach(check => {
+        check.addEventListener("change", function (e) {
+            if (e.target.checked == true) {
                 // console.log(e.target.value)
-                const i = 'total-'+ e.target.dataset.extraId
+                const i = 'total-' + e.target.dataset.extraId
                 const addTotal = document.getElementById(i)
                 const extraPrice = parseInt(e.target.dataset.extra)
                 total = parseInt(addTotal.dataset.total)
